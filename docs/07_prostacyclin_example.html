@@ -61,7 +61,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -664,9 +664,9 @@ div.tocify {
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error t value Pr(&gt;|t|)    
-## 25 - 10 == 0    8.258      8.698   0.949    0.613    
-## 50 - 10 == 0   43.258      8.698   4.974   &lt;0.001 ***
-## 50 - 25 == 0   35.000      8.698   4.024   &lt;0.001 ***
+## 25 - 10 == 0    8.258      8.698   0.949 0.613365    
+## 50 - 10 == 0   43.258      8.698   4.974  &lt; 1e-04 ***
+## 50 - 25 == 0   35.000      8.698   4.024 0.000921 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -679,17 +679,17 @@ div.tocify {
 ## 
 ## Fit: lm(formula = prostac ~ dose, data = prostacyclin)
 ## 
-## Quantile = 2.4536
+## Quantile = 2.4537
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##              Estimate lwr      upr     
-## 25 - 10 == 0   8.2583 -13.0824  29.5990
-## 50 - 10 == 0  43.2583  21.9176  64.5990
-## 50 - 25 == 0  35.0000  13.6593  56.3407</code></pre>
+## 25 - 10 == 0   8.2583 -13.0835  29.6002
+## 50 - 10 == 0  43.2583  21.9165  64.6002
+## 50 - 25 == 0  35.0000  13.6581  56.3419</code></pre>
 <p>The average prostacyclin concentration is higher in the high dose group than in the low and moderate dose group (both p-values are smaller than p&lt;0.001).
-The average concentration in the high dose group is 43.3 ng/ml (95% CI [21.9, 64.6]) and 35 ng/ml (95% CI [13.7, 56.3]) higher than in the low and moderate dose group, respectively (both p&lt;0.001).
+The average concentration in the high dose group is 43.3 ng/ml (95% CI [21.9, 64.6]) and 35 ng/ml (95% CI [13.6, 56.4]) higher than in the low and moderate dose group, respectively (both p&lt;0.001).
 The difference in average prostacyclin concentration between the moderate and low dose group is not significant (p=0.61, 95% CI on average difference [-13.1, 29.6] ng/ml).</p>
 </div>
 </div>
@@ -697,7 +697,7 @@ The difference in average prostacyclin concentration between the moderate and lo
 <div id="conclusion" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Conclusion</h1>
 <p>There is an extremely significant effect of arachidonic acid on the average prostacyclin blood concentration in rats (p&lt;0.001).
-The average concentration in the high dose group is 43.3 ng/ml (95% CI [21.9, 64.6]) and 35 ng/ml (95% CI [13.6, 56.4]) higher than in the low and moderate dose group, respectively (both p&lt;0.001).
+The average concentration in the high dose group is 43.3 ng/ml (95% CI [21.9, 64.6]) and 35 ng/ml (95% CI [13.7, 56.3]) higher than in the low and moderate dose group, respectively (both p&lt;0.001).
 The difference in average prostacyclin concentration between the moderate and low dose group is not significant (p=0.61, 95% CI on average difference [-13.1, 29.6] ng/ml).</p>
 </div>
 

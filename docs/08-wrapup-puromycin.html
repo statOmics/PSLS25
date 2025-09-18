@@ -61,7 +61,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -903,9 +903,9 @@ H_0: \beta_{c:s}= 0\text{ vs }H_1: \beta_{c:s}\neq 0
 ## 
 ## Linear Hypotheses:
 ##                                         Estimate Std. Error t value Pr(&gt;|t|)
-## log10conc == 0                            62.129      5.020  12.375   &lt;0.001
-## log10conc + log10conc:statetreated == 0   85.450      4.531  18.858   &lt;0.001
-## log10conc:statetreated == 0               23.321      6.763   3.448   0.0067
+## log10conc == 0                            62.129      5.020  12.375  &lt; 0.001
+## log10conc + log10conc:statetreated == 0   85.450      4.531  18.858  &lt; 0.001
+## log10conc:statetreated == 0               23.321      6.763   3.448  0.00669
 ##                                            
 ## log10conc == 0                          ***
 ## log10conc + log10conc:statetreated == 0 ***
@@ -919,22 +919,22 @@ H_0: \beta_{c:s}= 0\text{ vs }H_1: \beta_{c:s}\neq 0
 ## 
 ## Fit: lm(formula = rate ~ log10conc * state, data = Puromycin)
 ## 
-## Quantile = 2.5108
+## Quantile = 2.5094
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                                         Estimate lwr     upr    
-## log10conc == 0                          62.1285  49.5234 74.7336
-## log10conc + log10conc:statetreated == 0 85.4499  74.0732 96.8266
-## log10conc:statetreated == 0             23.3214   6.3415 40.3013</code></pre>
+## log10conc == 0                          62.1285  49.5304 74.7266
+## log10conc + log10conc:statetreated == 0 85.4499  74.0796 96.8203
+## log10conc:statetreated == 0             23.3214   6.3510 40.2919</code></pre>
 </div>
 <div id="conclusion" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Conclusion</h2>
 <p>There is an extremely significant effect of the substrate concentration on the reaction rate (p&lt;&lt;0.001).
 The effect of the substrate concentration on the reaction rate is extremely significant for reactions catalysed with untreated enzymes. A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 62.1 counts/min higher (95% CI [49.5, 74.7] counts/min) (p &lt;&lt; 0.001).
 The effect of the substrate concentration on the reaction rate is extremely significant for reactions catalysed puromycin treated enzymes (p &lt;&lt; 0.001). A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 85.4 counts/min higher (95% CI [74.1, 96.8] counts/min).
-The effect of the substrate concentration on the reaction rate is very significantly higher for reactions catalysed with Puromycin treated enzymes than when catalysed with non-treated enzymes (p = 0.007). A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 23.3 counts/min higher for reactions that are catalysed with Puromycin treated enzymes than with untreated enzymes (95% CI [6.4, 40.3] counts/min).</p>
+The effect of the substrate concentration on the reaction rate is very significantly higher for reactions catalysed with Puromycin treated enzymes than when catalysed with non-treated enzymes (p = 0.007). A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 23.3 counts/min higher for reactions that are catalysed with Puromycin treated enzymes than with untreated enzymes (95% CI [6.3, 40.3] counts/min).</p>
 </div>
 </div>
 <div id="additional-concepts" class="section level1" number="5">
@@ -1028,6 +1028,10 @@ E(Y | X_v=x_v +1, X_w=x_w, X_s=x_s) - E(Y | X_v=x_v, X_w=x_w, X_s=x_s) \\
 <p><img src="08-wrapup-puromycin_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log2</span>(gene) <span class="sc">~</span> grade <span class="sc">*</span> node, <span class="at">data =</span> kpna2)</span>
 <span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>ExploreModelMatrix<span class="sc">::</span><span class="fu">VisualizeDesign</span>(kpna2, <span class="sc">~</span> grade <span class="sc">*</span> node)<span class="sc">$</span>plotlist[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## Warning: multiple methods tables found for &#39;union&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;intersect&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;setdiff&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;setequal&#39;</code></pre>
 <p><img src="08-wrapup-puromycin_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 </div>

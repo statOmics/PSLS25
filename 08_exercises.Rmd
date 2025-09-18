@@ -39,6 +39,7 @@ weight
 - Exercise: [Exercise1](./08_1_poison1.html)
 - Data path: "https://raw.githubusercontent.com/statOmics/PSLSData/main/poison.csv"
 
+<!--
 - Solution1: [Solution1](./08_1_poison1_sol.html)
 <!---->
 
@@ -55,7 +56,7 @@ weight of the fish, **and including an interaction between dose and weight.**
 
   `https://raw.githubusercontent.com/statOmics/PSLSData/main/poison.csv`
   
-
+<!--
 - Solution2: [Solution2](./08_2_poison2_sol.html)
 <!---->
 
@@ -77,6 +78,7 @@ an interaction term between these two variables.
 - Exercise: [Exercise3](./08_3_puromycin.html)
 - Data path: Not required
 
+<!--
 - Solution: [Solution3](./08_3_puromycin_sol.html)
 - [Wrapup summary](./08-wrapup-puromycin.html)
 <!---->
@@ -101,7 +103,7 @@ not affected (0) or surgically removed (1).
 
   `https://raw.githubusercontent.com/statOmics/SGA21/master/data/kpna2.txt`
 
-
+<!--
 - Solution: [Solution4](./08_4_kpna2_sol.html)
 <!---->
 
@@ -214,7 +216,8 @@ increase in the substrate concentration ($\beta_1=10$).
 
 - Exercise: [Exercise8](./08_ExperimentalDesignII_2_puromycin.html)
 - Data path: Not required
-<!-- - Solution: [Solution8](./08_ExperimentalDesignII_2_puromycin_sol.html) <!---->
+<!-- 
+- Solution: [Solution8](./08_ExperimentalDesignII_2_puromycin_sol.html) <!---->
 
 ---
 
@@ -247,4 +250,5 @@ the ones we observed in the study?
 
   `https://raw.githubusercontent.com/statOmics/SGA21/master/data/kpna2.txt`
 
-<!-- - Solution: [Solution9](./08_ExperimentalDesignII_3_kpna2_sol.Rmd.html) <!---->
+<!-- 
+- Solution: [Solution9](./08_ExperimentalDesignII_3_kpna2_sol.Rmd.html) <!---->

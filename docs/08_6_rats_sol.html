@@ -61,7 +61,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -717,8 +717,12 @@ interaction effects for protein source and protein level.</p>
 </div>
 <div id="interpretation-of-the-regression-parameters" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Interpretation of the regression parameters</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">library</span>(ExploreModelMatrix)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>ExploreModelMatrix<span class="sc">::</span><span class="fu">VisualizeDesign</span>(diet, <span class="sc">~</span> block <span class="sc">+</span> protSource <span class="sc">*</span> protLevel)<span class="sc">$</span>plotlist</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">library</span>(ExploreModelMatrix)</span></code></pre></div>
+<pre><code>## Warning: multiple methods tables found for &#39;union&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;intersect&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;setdiff&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;setequal&#39;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>ExploreModelMatrix<span class="sc">::</span><span class="fu">VisualizeDesign</span>(diet, <span class="sc">~</span> block <span class="sc">+</span> protSource <span class="sc">*</span> protLevel)<span class="sc">$</span>plotlist</span></code></pre></div>
 <pre><code>## $`block = 1`</code></pre>
 <p><img src="08_6_rats_sol_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre><code>## 
@@ -821,8 +825,8 @@ and the interaction) by using anova. With this test we will assess the null
 hypothesis that the average weight gain in each treatment is equal: i.e. <span class="math inline">\(H_0: \mu_{b,l}=\mu_{b,h}=\mu_{c,h}=\mu_{c,l}=\mu_{p,h}=\mu_{p,h}\)</span> versus
 the alternative hyptohesis <span class="math inline">\(H_1:\)</span> that at least two treatment means are
 different.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>lm0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weightGain <span class="sc">~</span> block, <span class="at">data =</span> diet)</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">anova</span>(lm0, lm1)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>lm0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weightGain <span class="sc">~</span> block, <span class="at">data =</span> diet)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">anova</span>(lm0, lm1)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Res.Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"50","2":"7728.833","3":"NA","4":"NA","5":"NA","6":"NA","_rn_":"1"},{"1":"45","2":"3134.150","3":"5","4":"4594.683","5":"13.19406","6":"6.308133e-08","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -834,8 +838,8 @@ interaction) on the weight gain of rats (p &lt;&lt; 0.001).</p>
 </div>
 <div id="assessing-the-interaction-effect-between-protein-source-and-protein-level" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Assessing the interaction effect between protein source and protein level</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">Anova</span>(lm1, <span class="at">type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">Anova</span>(lm1, <span class="at">type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sum Sq"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"31222.890","2":"1","3":"448.297002","4":"4.955763e-25","_rn_":"(Intercept)"},{"1":"5969.350","2":"9","3":"9.523076","4":"6.083601e-08","_rn_":"block"},{"1":"9.800","2":"2","3":"0.070354","4":"9.321661e-01","_rn_":"protSource"},{"1":"2000.000","2":"1","3":"28.715920","4":"2.762595e-06","_rn_":"protLevel"},{"1":"1010.633","2":"2","3":"7.255316","4":"1.857393e-03","_rn_":"protSource:protLevel"},{"1":"3134.150","2":"45","3":"NA","4":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -882,26 +886,26 @@ the protein level.</p>
 <p>We can define the contrasts and assess the significance of the contrasts with
 the code below. The contrasts are given as input in the form of symbolic
 descriptions to the <code>linfct</code> argument of the <code>glht</code> function.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">75468</span>) <span class="co"># to get reproducible results (small effect if removed)</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>lm1MultComp <span class="ot">&lt;-</span> <span class="fu">glht</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="at">model =</span> lm1,</span>
-<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  <span class="at">linfct =</span> <span class="fu">c</span>(</span>
-<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal = 0&quot;</span>,</span>
-<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>    <span class="st">&quot;protSourcepork = 0&quot;</span>,</span>
-<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal- protSourcepork = 0&quot;</span>,</span>
-<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal + protSourcecereal:protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a>    <span class="st">&quot;protSourcepork + protSourcepork:protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>    <span class="st">&quot;(protSourcecereal + protSourcecereal:protLevelhigh) - (protSourcepork + protSourcepork:protLevelhigh) = 0&quot;</span>,</span>
-<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a>    <span class="st">&quot;protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a>    <span class="st">&quot;protLevelhigh +  protSourcecereal:protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>    <span class="st">&quot;protLevelhigh +  protSourcepork:protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal:protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>    <span class="st">&quot;protSourcepork:protLevelhigh = 0&quot;</span>,</span>
-<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal:protLevelhigh - protSourcepork:protLevelhigh = 0&quot;</span></span>
-<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>  )</span>
-<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">summary</span>(lm1MultComp)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">75468</span>) <span class="co"># to get reproducible results (small effect if removed)</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>lm1MultComp <span class="ot">&lt;-</span> <span class="fu">glht</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>  <span class="at">model =</span> lm1,</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>  <span class="at">linfct =</span> <span class="fu">c</span>(</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal = 0&quot;</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>    <span class="st">&quot;protSourcepork = 0&quot;</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal- protSourcepork = 0&quot;</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal + protSourcecereal:protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a>    <span class="st">&quot;protSourcepork + protSourcepork:protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a>    <span class="st">&quot;(protSourcecereal + protSourcecereal:protLevelhigh) - (protSourcepork + protSourcepork:protLevelhigh) = 0&quot;</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>    <span class="st">&quot;protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a>    <span class="st">&quot;protLevelhigh +  protSourcecereal:protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a>    <span class="st">&quot;protLevelhigh +  protSourcepork:protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal:protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a>    <span class="st">&quot;protSourcepork:protLevelhigh = 0&quot;</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a>    <span class="st">&quot;protSourcecereal:protLevelhigh - protSourcepork:protLevelhigh = 0&quot;</span></span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a>  )</span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">summary</span>(lm1MultComp)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -976,7 +980,7 @@ descriptions to the <code>linfct</code> argument of the <code>glht</code> functi
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">confint</span>(lm1MultComp)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">confint</span>(lm1MultComp)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Confidence Intervals
 ## 

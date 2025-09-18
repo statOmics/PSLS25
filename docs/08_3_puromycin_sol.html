@@ -61,7 +61,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -875,7 +875,7 @@ H_0: \beta_{c:s}= 0\text{ vs }H_1: \beta_{c:s}\neq 0
 ##                                         Estimate Std. Error t value Pr(&gt;|t|)
 ## log10conc == 0                            62.129      5.020  12.375  &lt; 0.001
 ## log10conc + log10conc:statetreated == 0   85.450      4.531  18.858  &lt; 0.001
-## log10conc:statetreated == 0               23.321      6.763   3.448  0.00692
+## log10conc:statetreated == 0               23.321      6.763   3.448  0.00693
 ##                                            
 ## log10conc == 0                          ***
 ## log10conc + log10conc:statetreated == 0 ***
@@ -889,22 +889,22 @@ H_0: \beta_{c:s}= 0\text{ vs }H_1: \beta_{c:s}\neq 0
 ## 
 ## Fit: lm(formula = rate ~ log10conc * state, data = Puromycin)
 ## 
-## Quantile = 2.5112
+## Quantile = 2.5075
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                                         Estimate lwr     upr    
-## log10conc == 0                          62.1285  49.5213 74.7357
-## log10conc + log10conc:statetreated == 0 85.4499  74.0714 96.8285
-## log10conc:statetreated == 0             23.3214   6.3387 40.3041</code></pre>
+## log10conc == 0                          62.1285  49.5397 74.7173
+## log10conc + log10conc:statetreated == 0 85.4499  74.0880 96.8119
+## log10conc:statetreated == 0             23.3214   6.3635 40.2793</code></pre>
 </div>
 <div id="conclusion" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Conclusion</h2>
 <p>There is an extremely significant effect of the substrate concentration on the reaction rate (p&lt;&lt;0.001).
 The effect of the substrate concentration on the reaction rate is extremely significant for reactions catalysed with untreated enzymes. A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 62.1 counts/min higher (95% CI [49.5, 74.7] counts/min) (p &lt;&lt; 0.001).
 The effect of the substrate concentration on the reaction rate is extremely significant for reactions catalysed puromycin treated enzymes (p &lt;&lt; 0.001). A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 85.4 counts/min higher (95% CI [74.1, 96.8] counts/min).
-The effect of the substrate concentration on the reaction rate is very significantly higher for reactions catalysed with Puromycin treated enzymes than when catalysed with non-treated enzymes (p = 0.007). A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 23.3 counts/min higher for reactions that are catalysed with Puromycin treated enzymes than with untreated enzymes (95% CI [6.4, 40.3] counts/min).</p>
+The effect of the substrate concentration on the reaction rate is very significantly higher for reactions catalysed with Puromycin treated enzymes than when catalysed with non-treated enzymes (p = 0.007). A reaction at a substrate concentration that is 10 times higher will have a reaction speed that is on average 23.3 counts/min higher for reactions that are catalysed with Puromycin treated enzymes than with untreated enzymes (95% CI [6.3, 40.3] counts/min).</p>
 </div>
 </div>
 

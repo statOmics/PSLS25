@@ -1,5 +1,5 @@
 ---
-title: "PSLS24 - Practical Statistics for the Life Sciences 2024"
+title: "PSLS25 - Practical Statistics for the Life Sciences 2025"
 output:
   html_document:
     number_sections: false

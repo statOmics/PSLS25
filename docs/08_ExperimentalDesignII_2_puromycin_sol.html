@@ -61,7 +61,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -644,9 +644,9 @@ The number of counts per minute of radioactive product from the reaction was mea
 <span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">simFast</span>(form, Puromycin, betas, sd, <span class="at">contrasts =</span> contrast, <span class="at">alpha =</span> alpha, <span class="at">nSim =</span> nSim)</span>
 <span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>power</span></code></pre></div>
-<pre><code>## [1] 0.4206</code></pre>
+<pre><code>## [1] 0.4052</code></pre>
 <p>The power to pick up a slope of <span class="math inline">\(\beta_1=10\)</span> for this experiment is only
-42.1%.</p>
+40.5%.</p>
 </div>
 <div id="calculate-the-number-of-repeats-needed-per-concentration-to-obtain-a-power-of-90-to-pick-up-an-effect-of-beta10." class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Calculate the number of repeats needed per concentration to obtain a power of 90% to pick up an effect of <span class="math inline">\(\beta=10\)</span>.</h2>
@@ -710,7 +710,7 @@ obtain a power above 90%.</p>
   </script>
 </div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>powerOpt</span></code></pre></div>
-<pre><code>## [1] 0.5997</code></pre>
+<pre><code>## [1] 0.6084</code></pre>
 <p>Note that the power for a design where we repeat each concentration 1 time and
 the minimum and maximum concentration 4 times is considerably higher than that
 for the designs where we repeat all data points.</p>

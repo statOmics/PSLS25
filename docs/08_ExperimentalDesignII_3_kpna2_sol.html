@@ -61,7 +61,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -621,6 +621,10 @@ The lymph nodes were not affected (0) or chirugically removed (1).</p>
 <p>When checking the significance of the interaction term, we see that it is significant on the 5% significance level. We therefore keep the full model.</p>
 <p>As we are dealing with a factorial design, we can calculate the mean gene expression for each group by the following parameter summations.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>ExploreModelMatrix<span class="sc">::</span><span class="fu">VisualizeDesign</span>(kpna2, <span class="sc">~</span> grade <span class="sc">*</span> node)<span class="sc">$</span>plotlist</span></code></pre></div>
+<pre><code>## Warning: multiple methods tables found for &#39;union&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;intersect&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;setdiff&#39;</code></pre>
+<pre><code>## Warning: multiple methods tables found for &#39;setequal&#39;</code></pre>
 <pre><code>## [[1]]</code></pre>
 <p><img src="08_ExperimentalDesignII_3_kpna2_sol_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>The researchers want to know the power for testing following hypotheses (remark that we will have to adjust for multiple testing):</p>
@@ -645,7 +649,7 @@ The lymph nodes were not affected (0) or chirugically removed (1).</p>
 </ul>
 <p><span class="math display">\[H_0: \log_2{FC}_{g3n1-g1n1} - \log_2{FC}_{g3n0-g1n0} = \beta_{g3n1} = 0\]</span> which is an equivalent hypotheses with <span class="math display">\[H_0: \log_2{FC}_{g3n1-g3n0} - \log_2{FC}_{g1n1-g1n0} = \beta_{g3n1} = 0\]</span></p>
 <p>We can test this using multcomp, which controls for multiple testing.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span></code></pre></div>
 <pre><code>## Loading required package: mvtnorm</code></pre>
 <pre><code>## Warning: package &#39;mvtnorm&#39; was built under R version 4.4.1</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
@@ -661,14 +665,14 @@ The lymph nodes were not affected (0) or chirugically removed (1).</p>
 <pre><code>## The following object is masked from &#39;package:MASS&#39;:
 ## 
 ##     geyser</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>mcp <span class="ot">&lt;-</span> <span class="fu">glht</span>(fit, <span class="at">linfct =</span> <span class="fu">c</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>  <span class="st">&quot;grade3 = 0&quot;</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  <span class="st">&quot;grade3 + grade3:node1 = 0&quot;</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  <span class="st">&quot;node1 = 0&quot;</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>  <span class="st">&quot;node1 + grade3:node1 = 0&quot;</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>  <span class="st">&quot;grade3:node1 = 0&quot;</span></span>
-<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>))</span>
-<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="fu">summary</span>(mcp)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>mcp <span class="ot">&lt;-</span> <span class="fu">glht</span>(fit, <span class="at">linfct =</span> <span class="fu">c</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>  <span class="st">&quot;grade3 = 0&quot;</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>  <span class="st">&quot;grade3 + grade3:node1 = 0&quot;</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>  <span class="st">&quot;node1 = 0&quot;</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>  <span class="st">&quot;node1 + grade3:node1 = 0&quot;</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>  <span class="st">&quot;grade3:node1 = 0&quot;</span></span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>))</span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a><span class="fu">summary</span>(mcp)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -678,9 +682,9 @@ The lymph nodes were not affected (0) or chirugically removed (1).</p>
 ##                            Estimate Std. Error t value Pr(&gt;|t|)    
 ## grade3 == 0                  1.6675     0.1827   9.127  &lt; 0.001 ***
 ## grade3 + grade3:node1 == 0   0.8928     0.1827   4.886  &lt; 0.001 ***
-## node1 == 0                   0.6577     0.1827   3.600  0.00707 ** 
-## node1 + grade3:node1 == 0   -0.1170     0.1827  -0.640  0.89818    
-## grade3:node1 == 0           -0.7748     0.2584  -2.998  0.02651 *  
+## node1 == 0                   0.6577     0.1827   3.600  0.00703 ** 
+## node1 + grade3:node1 == 0   -0.1170     0.1827  -0.640  0.89812    
+## grade3:node1 == 0           -0.7748     0.2584  -2.998  0.02667 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -692,136 +696,136 @@ The lymph nodes were not affected (0) or chirugically removed (1).</p>
 <div id="simulation-function" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Simulation function</h2>
 <p>Function to simulate data similar to that of our experiment under our model assumptions.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>simFastMultipleContrasts <span class="ot">&lt;-</span> <span class="cf">function</span>(form, data, betas, sd, contrasts, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">nSim =</span> <span class="dv">10000</span>, <span class="at">adjust =</span> <span class="st">&quot;holm&quot;</span>) {</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>  ySim <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(data) <span class="sc">*</span> nSim, <span class="at">sd =</span> sd)</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>  <span class="fu">dim</span>(ySim) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(data), nSim)</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>  design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(form, data)</span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>  ySim <span class="ot">&lt;-</span> ySim <span class="sc">+</span> <span class="fu">c</span>(design <span class="sc">%*%</span> betas)</span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>  ySim <span class="ot">&lt;-</span> <span class="fu">t</span>(ySim)</span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a>  <span class="do">### Fitting</span></span>
-<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a>  fitAll <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">lmFit</span>(ySim, design)</span>
-<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a>  <span class="do">### Inference</span></span>
-<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a>  varUnscaled <span class="ot">&lt;-</span> <span class="fu">t</span>(contrasts) <span class="sc">%*%</span> fitAll<span class="sc">$</span>cov.coefficients <span class="sc">%*%</span> contrasts</span>
-<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a>  contrasts <span class="ot">&lt;-</span> fitAll<span class="sc">$</span>coefficients <span class="sc">%*%</span> contrasts</span>
-<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a>  seContrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">diag</span>(varUnscaled)<span class="sc">^</span>.<span class="dv">5</span>, <span class="at">nrow =</span> nSim, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> fitAll<span class="sc">$</span>sigma</span>
-<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a>  tstats <span class="ot">&lt;-</span> contrasts <span class="sc">/</span> seContrasts</span>
-<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a>  pvals <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(tstats), fitAll<span class="sc">$</span>df.residual, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a>  pvals <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(pvals, <span class="dv">1</span>, p.adjust, <span class="at">method =</span> adjust))</span>
-<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a></span>
-<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">colMeans</span>(pvals <span class="sc">&lt;</span> alpha))</span>
-<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>simFastMultipleContrasts <span class="ot">&lt;-</span> <span class="cf">function</span>(form, data, betas, sd, contrasts, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">nSim =</span> <span class="dv">10000</span>, <span class="at">adjust =</span> <span class="st">&quot;holm&quot;</span>) {</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>  ySim <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(data) <span class="sc">*</span> nSim, <span class="at">sd =</span> sd)</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>  <span class="fu">dim</span>(ySim) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(data), nSim)</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>  design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(form, data)</span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a>  ySim <span class="ot">&lt;-</span> ySim <span class="sc">+</span> <span class="fu">c</span>(design <span class="sc">%*%</span> betas)</span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>  ySim <span class="ot">&lt;-</span> <span class="fu">t</span>(ySim)</span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>  <span class="do">### Fitting</span></span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a>  fitAll <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">lmFit</span>(ySim, design)</span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>  <span class="do">### Inference</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a>  varUnscaled <span class="ot">&lt;-</span> <span class="fu">t</span>(contrasts) <span class="sc">%*%</span> fitAll<span class="sc">$</span>cov.coefficients <span class="sc">%*%</span> contrasts</span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a>  contrasts <span class="ot">&lt;-</span> fitAll<span class="sc">$</span>coefficients <span class="sc">%*%</span> contrasts</span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a>  seContrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">diag</span>(varUnscaled)<span class="sc">^</span>.<span class="dv">5</span>, <span class="at">nrow =</span> nSim, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> fitAll<span class="sc">$</span>sigma</span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a>  tstats <span class="ot">&lt;-</span> contrasts <span class="sc">/</span> seContrasts</span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a>  pvals <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(tstats), fitAll<span class="sc">$</span>df.residual, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a>  pvals <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(pvals, <span class="dv">1</span>, p.adjust, <span class="at">method =</span> adjust))</span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">colMeans</span>(pvals <span class="sc">&lt;</span> alpha))</span>
+<span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="power-of-current-experiment" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> power of current experiment</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>betas <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fit)</span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>contrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="fu">rownames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">names</span>(fit<span class="sc">$</span>coefficients)</span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="fu">colnames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;graden0&quot;</span>, <span class="st">&quot;graden1&quot;</span>, <span class="st">&quot;nodeg1&quot;</span>, <span class="st">&quot;nodeg3&quot;</span>, <span class="st">&quot;interaction&quot;</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>contrasts[<span class="dv">2</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a>contrasts[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>contrasts[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a></span>
-<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="er">~</span> grade <span class="sc">*</span> node</span>
-<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a></span>
-<span id="cb29-16"><a href="#cb29-16" tabindex="-1"></a>power1 <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas, sd, contrasts, <span class="at">nSim =</span> nSim)</span>
-<span id="cb29-17"><a href="#cb29-17" tabindex="-1"></a>power1</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>betas <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fit)</span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>contrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a><span class="fu">rownames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">names</span>(fit<span class="sc">$</span>coefficients)</span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="fu">colnames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;graden0&quot;</span>, <span class="st">&quot;graden1&quot;</span>, <span class="st">&quot;nodeg1&quot;</span>, <span class="st">&quot;nodeg3&quot;</span>, <span class="st">&quot;interaction&quot;</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>contrasts[<span class="dv">2</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a>contrasts[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a>contrasts[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="er">~</span> grade <span class="sc">*</span> node</span>
+<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" tabindex="-1"></a>power1 <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas, sd, contrasts, <span class="at">nSim =</span> nSim)</span>
+<span id="cb33-17"><a href="#cb33-17" tabindex="-1"></a>power1</span></code></pre></div>
 <pre><code>##     graden0     graden1      nodeg1      nodeg3 interaction 
-##     1.00000     0.99025     0.83980     0.08850     0.70260</code></pre>
+##      1.0000      0.9896      0.8385      0.0834      0.6954</code></pre>
 <p>We observe large powers for all contrasts, exept for contrast nodeg3, which has a small effect size.</p>
 </div>
 <div id="power-for-increasing-sample-size" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Power for increasing sample size</h2>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>betas <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients</span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fit)</span>
-<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>contrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="fu">rownames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">names</span>(fit<span class="sc">$</span>coefficients)</span>
-<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="fu">colnames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;graden0&quot;</span>, <span class="st">&quot;graden1&quot;</span>, <span class="st">&quot;nodeg1&quot;</span>, <span class="st">&quot;nodeg3&quot;</span>, <span class="st">&quot;interaction&quot;</span>)</span>
-<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>contrasts[<span class="dv">2</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>contrasts[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>contrasts[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="er">~</span> grade <span class="sc">*</span> node</span>
-<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a></span>
-<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a>powers <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">9</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a><span class="fu">colnames</span>(powers) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="fu">colnames</span>(contrasts))</span>
-<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a>powers[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a></span>
-<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a>dataAllComb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">each =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>(),</span>
-<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a>  <span class="at">node =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>()</span>
-<span id="cb31-23"><a href="#cb31-23" tabindex="-1"></a>)</span>
-<span id="cb31-24"><a href="#cb31-24" tabindex="-1"></a></span>
-<span id="cb31-25"><a href="#cb31-25" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(powers))</span>
-<span id="cb31-26"><a href="#cb31-26" tabindex="-1"></a>{</span>
-<span id="cb31-27"><a href="#cb31-27" tabindex="-1"></a>  predData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb31-28"><a href="#cb31-28" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">rep</span>(dataAllComb<span class="sc">$</span>grade, powers[i, <span class="dv">1</span>]),</span>
-<span id="cb31-29"><a href="#cb31-29" tabindex="-1"></a>    <span class="at">node =</span> <span class="fu">rep</span>(dataAllComb<span class="sc">$</span>node, powers[i, <span class="dv">1</span>])</span>
-<span id="cb31-30"><a href="#cb31-30" tabindex="-1"></a>  )</span>
-<span id="cb31-31"><a href="#cb31-31" tabindex="-1"></a>  powers[i, <span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, predData, betas, sd, contrasts, <span class="at">nSim =</span> nSim)</span>
-<span id="cb31-32"><a href="#cb31-32" tabindex="-1"></a>}</span>
-<span id="cb31-33"><a href="#cb31-33" tabindex="-1"></a>powers</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>betas <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fit)</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>contrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a><span class="fu">rownames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">names</span>(fit<span class="sc">$</span>coefficients)</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a><span class="fu">colnames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;graden0&quot;</span>, <span class="st">&quot;graden1&quot;</span>, <span class="st">&quot;nodeg1&quot;</span>, <span class="st">&quot;nodeg3&quot;</span>, <span class="st">&quot;interaction&quot;</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>contrasts[<span class="dv">2</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a>contrasts[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a>contrasts[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb35-13"><a href="#cb35-13" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="er">~</span> grade <span class="sc">*</span> node</span>
+<span id="cb35-15"><a href="#cb35-15" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="#cb35-16" tabindex="-1"></a>powers <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">9</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb35-17"><a href="#cb35-17" tabindex="-1"></a><span class="fu">colnames</span>(powers) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="fu">colnames</span>(contrasts))</span>
+<span id="cb35-18"><a href="#cb35-18" tabindex="-1"></a>powers[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb35-19"><a href="#cb35-19" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" tabindex="-1"></a>dataAllComb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-21"><a href="#cb35-21" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">each =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>(),</span>
+<span id="cb35-22"><a href="#cb35-22" tabindex="-1"></a>  <span class="at">node =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>()</span>
+<span id="cb35-23"><a href="#cb35-23" tabindex="-1"></a>)</span>
+<span id="cb35-24"><a href="#cb35-24" tabindex="-1"></a></span>
+<span id="cb35-25"><a href="#cb35-25" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(powers))</span>
+<span id="cb35-26"><a href="#cb35-26" tabindex="-1"></a>{</span>
+<span id="cb35-27"><a href="#cb35-27" tabindex="-1"></a>  predData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-28"><a href="#cb35-28" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">rep</span>(dataAllComb<span class="sc">$</span>grade, powers[i, <span class="dv">1</span>]),</span>
+<span id="cb35-29"><a href="#cb35-29" tabindex="-1"></a>    <span class="at">node =</span> <span class="fu">rep</span>(dataAllComb<span class="sc">$</span>node, powers[i, <span class="dv">1</span>])</span>
+<span id="cb35-30"><a href="#cb35-30" tabindex="-1"></a>  )</span>
+<span id="cb35-31"><a href="#cb35-31" tabindex="-1"></a>  powers[i, <span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, predData, betas, sd, contrasts, <span class="at">nSim =</span> nSim)</span>
+<span id="cb35-32"><a href="#cb35-32" tabindex="-1"></a>}</span>
+<span id="cb35-33"><a href="#cb35-33" tabindex="-1"></a>powers</span></code></pre></div>
 <pre><code>##        n graden0 graden1  nodeg1  nodeg3 interaction
-##  [1,]  2 0.71065 0.26595 0.15015 0.03265     0.11180
-##  [2,]  3 0.99255 0.64625 0.38280 0.04360     0.28210
-##  [3,]  4 0.99985 0.86910 0.58910 0.05850     0.44725
-##  [4,]  5 1.00000 0.96215 0.74165 0.07440     0.59270
-##  [5,]  6 1.00000 0.99035 0.83995 0.08595     0.69940
-##  [6,]  7 1.00000 0.99760 0.90665 0.09640     0.78730
-##  [7,]  8 1.00000 0.99930 0.94215 0.10730     0.84970
-##  [8,]  9 1.00000 0.99975 0.96985 0.11725     0.89870
-##  [9,] 10 1.00000 1.00000 0.98470 0.12630     0.93385</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>powers <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>  <span class="fu">gather</span>(contrast, power, <span class="sc">-</span>n) <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n, power, <span class="at">color =</span> contrast)) <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+##  [1,]  2  0.7045 0.26770 0.15195 0.03500     0.11415
+##  [2,]  3  0.9931 0.65530 0.38160 0.04520     0.27950
+##  [3,]  4  1.0000 0.87560 0.58595 0.05660     0.44705
+##  [4,]  5  1.0000 0.96250 0.73505 0.07225     0.58900
+##  [5,]  6  1.0000 0.98855 0.84180 0.08835     0.70280
+##  [6,]  7  1.0000 0.99795 0.90660 0.09630     0.78490
+##  [7,]  8  1.0000 0.99925 0.94530 0.10815     0.84985
+##  [8,]  9  1.0000 0.99980 0.96890 0.11785     0.89865
+##  [9,] 10  1.0000 1.00000 0.98505 0.12720     0.93070</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>powers <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  <span class="fu">gather</span>(contrast, power, <span class="sc">-</span>n) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n, power, <span class="at">color =</span> contrast)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="08_ExperimentalDesignII_3_kpna2_sol_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div id="power-when-fc-for-grade-in-patients-with-unaffected-lymph-nodes-equals-1.5" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Power when FC for grade in patients with unaffected lymph nodes equals 1.5</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>betas2 <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients</span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>betas2[<span class="st">&quot;grade3&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">log2</span>(<span class="fl">1.5</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fit)</span>
-<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>contrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a><span class="fu">rownames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">names</span>(fit<span class="sc">$</span>coefficients)</span>
-<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a><span class="fu">colnames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;graden0&quot;</span>, <span class="st">&quot;graden1&quot;</span>, <span class="st">&quot;nodeg1&quot;</span>, <span class="st">&quot;nodeg3&quot;</span>, <span class="st">&quot;interaction&quot;</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>contrasts[<span class="dv">2</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>contrasts[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a>contrasts[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a></span>
-<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="er">~</span> grade <span class="sc">*</span> node</span>
-<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a></span>
-<span id="cb34-17"><a href="#cb34-17" tabindex="-1"></a>power3 <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas2, sd, contrasts, <span class="at">nSim =</span> nSim)</span>
-<span id="cb34-18"><a href="#cb34-18" tabindex="-1"></a>power3</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>betas2 <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>betas2[<span class="st">&quot;grade3&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">log2</span>(<span class="fl">1.5</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fit)</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>contrasts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a><span class="fu">rownames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">names</span>(fit<span class="sc">$</span>coefficients)</span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a><span class="fu">colnames</span>(contrasts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;graden0&quot;</span>, <span class="st">&quot;graden1&quot;</span>, <span class="st">&quot;nodeg1&quot;</span>, <span class="st">&quot;nodeg3&quot;</span>, <span class="st">&quot;interaction&quot;</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a>contrasts[<span class="dv">2</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-11"><a href="#cb38-11" tabindex="-1"></a>contrasts[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>contrasts[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a>contrasts[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-14"><a href="#cb38-14" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="er">~</span> grade <span class="sc">*</span> node</span>
+<span id="cb38-16"><a href="#cb38-16" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="#cb38-17" tabindex="-1"></a>power3 <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas2, sd, contrasts, <span class="at">nSim =</span> nSim)</span>
+<span id="cb38-18"><a href="#cb38-18" tabindex="-1"></a>power3</span></code></pre></div>
 <pre><code>##     graden0     graden1      nodeg1      nodeg3 interaction 
-##     0.69050     0.10550     0.79380     0.06180     0.63165</code></pre>
+##     0.68770     0.10660     0.79250     0.06430     0.62785</code></pre>
 <p>We observe a drop in the power for all the contrasts!?</p>
 <p>We only would expect to loose power for the contrasts assessing the grade effect because both fold changes have been decreased.</p>
 <p>The reason why all powers are affected is because we also do multiple testing and the multiple testing using the pvalue correction using Holm’s method for a particular contrast is also depending on the order of significance of the tests within each simulation.</p>
 <p>When we do both simulations without correcting for multiple testing (adjust = “none”) we see that changing the size of the fold change for grade for patients with unaffected lymph nodes only impacts the power for the contrasts for assessing the grade effect.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>power1None <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas, sd, contrasts, <span class="at">nSim =</span> nSim, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>power3None <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas2, sd, contrasts, <span class="at">nSim =</span> nSim, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>power1None</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>power1None <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas, sd, contrasts, <span class="at">nSim =</span> nSim, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>power3None <span class="ot">&lt;-</span> <span class="fu">simFastMultipleContrasts</span>(form, kpna2, betas2, sd, contrasts, <span class="at">nSim =</span> nSim, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>power1None</span></code></pre></div>
 <pre><code>##     graden0     graden1      nodeg1      nodeg3 interaction 
-##     1.00000     0.99655     0.92705     0.09250     0.81370</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>power3None</span></code></pre></div>
+##     1.00000     0.99690     0.92945     0.09375     0.81590</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>power3None</span></code></pre></div>
 <pre><code>##     graden0     graden1      nodeg1      nodeg3 interaction 
-##     0.85880     0.16710     0.92795     0.09230     0.81050</code></pre>
+##     0.85915     0.16555     0.92835     0.09220     0.81310</code></pre>
 </div>
 </div>
 
