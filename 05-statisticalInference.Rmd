@@ -6,13 +6,6 @@ date: "statOmics, Ghent University (https://statomics.github.io)"
 
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dsVs4hRtVWA?si=DG71UhvUKhWFgif6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-hNiMDLNYzk?si=nqkl26eru1HVYzZi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BjT9ODMcsU0?si=Yqb7AYZaLmGjFULx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ```{r setup, include=FALSE, cache=FALSE}
 knitr::opts_chunk$set(
   include = TRUE, comment = NA, echo = TRUE,
@@ -306,7 +299,7 @@ nSim <- 50 # number of simulations
 
 femSamp <- matrix(nrow = n, ncol = nSim)
 for (j in 1:nSim) {
-  femSamp[, j] <- sample(fem$DirectChol, n)
+  femSamp[, j] <- sample(fem$DirectChol, 15)
   if (j < 4) {
     p <- data.frame(log2(femSamp)) %>%
       gather(key = "sample", value = "log2cholesterol") %>%
@@ -1421,9 +1414,9 @@ The way how we calculate it is context dependent
   $$
 with the index "0" in $\text{P}_0\left[.\right]$ indicates that the probability is calculated under $H_0$.
 
-It gives the probability to observe a test statistic $T$ lower or equal to the value observed in the current sample in a random sample under $H_0$
+It gives the probability to observe a test statistic $T$ lower or equal to the value observed in the current sample in a random sample under $H_0$, 
 
-    - i.e. a test statistic $T$ in the random sample under $H_0$ with a value that is more extreme, more in the direction of $H_1$ then the one observed in the current sample.
+- i.e. a test statistic $T$ in the random sample under $H_0$ with a value that is more extreme, more in the direction of $H_1$ then the one observed in the current sample.
 
 ### Captopril example
 
@@ -1605,7 +1598,7 @@ pSim %>%
 
 - Determine the type II error is less evident.
 - We have to reason under $H_1$
-- In the captopril voorbeeld is $H_1: \mu<0$
+- In the captopril example is $H_1: \mu<0$
 - Many alternatives are possible
 - The distribution under $H_1$ is not fully specified
 
@@ -1641,7 +1634,6 @@ pSim %>%
   geom_histogram() +
   xlim(0, 1)
 ```
-
 - We observe that a power of `r mean(pSim<alpha)` or a type II error of `r 1-mean(pSim<alpha)`.
 
 ---
@@ -1739,7 +1731,7 @@ t.test(captopril$SBPa, captopril$SBPb, paired = TRUE, alternative = "less")
 
 ### Conclusion
 
-There is on average an extremely significant blood pressure drop upon administering captopril to patients with hypertension. The systolic blood pressure decreases on average with 18.9 mmHg upon the treatment with captopril (95% CI [$-\infty,-14.82$] mmHg).
+There is on average an extremely significant blood pressure drop upon administering captopril to patients with hypertension ($p << 0.001$). The systolic blood pressure decreases on average with 18.9 mmHg upon the treatment with captopril (95% CI [$-\infty,-14.82$] mmHg).
 
 Note that
 

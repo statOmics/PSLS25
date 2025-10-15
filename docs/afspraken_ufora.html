@@ -14,10 +14,9 @@
 
 <title>Organisation curse Practical Statistics for the Life Sciences</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -34,6 +33,10 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -50,8 +53,14 @@
 
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -210,6 +219,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -412,88 +424,84 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
 
 
-<h1 class="title toc-ignore">Organisation curse Practical Statistics for
-the Life Sciences</h1>
+
+<h1 class="title toc-ignore">Organisation curse Practical Statistics for the Life Sciences</h1>
 <h4 class="author">Lieven Clement</h4>
-<h4 class="date">statOmics, Ghent University (<a
-href="https://statomics.github.io"
-class="uri">https://statomics.github.io</a>)</h4>
+<h4 class="date">statOmics, Ghent University (<a href="https://statomics.github.io" class="uri">https://statomics.github.io</a>)</h4>
 
 </div>
 
 
-<div id="course-practical-statistics-for-the-life-sciences"
-class="section level1">
-<h1>Course Practical Statistics for the Life Sciences</h1>
+<div id="course-practical-statistics-for-the-life-sciences" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Course Practical Statistics for the Life Sciences</h1>
 <ul>
-<li>Course material via <a
-href="https://statomics.github.io/PSLS24/">https://statomics.github.io/PSLS24/</a></li>
+<li>Course material via <a href="https://statomics.github.io/PSLS25/">https://statomics.github.io/PSLS25/</a></li>
 </ul>
-<div id="lectures" class="section level2">
-<h2>Lectures</h2>
+<div id="lectures" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Lectures</h2>
 <ul>
 <li>Goal: Statistical Literacy</li>
 <li>1 Lecture block on Wednesday @ 8u30</li>
 <li>Lecture room 0.2. S8. Campus Sterre.</li>
 </ul>
 </div>
-<div id="on-campus-pc-tutorials" class="section level2">
-<h2>On campus PC tutorials</h2>
+<div id="on-campus-pc-tutorials" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> On campus PC tutorials</h2>
 <ul>
 <li>Three lecture blocks on Tuesday Morning / Afternoon</li>
 <li>Goal: get insight in statistics by conducting data analysis</li>
 <li>Introduction to statistical software R</li>
 <li>Week 2-3: Introduction to R
 <ul>
-<li><a
-href="https://dodona.be/nl/courses/3858/">https://dodona.be/nl/courses/3858/</a></li>
+<li><a href="https://dodona.be/nl/courses/5450/">https://dodona.be/nl/courses/5450/</a></li>
 </ul></li>
 <li>Week 4-12: PSLS exercises
 <ul>
-<li><a
-href="https://statomics.github.io/PSLS24/">https://statomics.github.io/PSLS24/</a></li>
+<li><a href="https://statomics.github.io/PSLS25/">https://statomics.github.io/PSLS25/</a></li>
 </ul></li>
 </ul>
 </div>
-<div id="contact" class="section level2">
-<h2>Contact</h2>
+<div id="contact" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Contact</h2>
 <ul>
-<li>Theory: Lieven Clement (email: <a
-href="mailto:lieven.clement@ugent.be"
-class="email">lieven.clement@ugent.be</a>)</li>
-<li>Exercises: Nele De Meester (email: <a
-href="mailto:nele.demeester@ugent.be"
-class="email">nele.demeester@ugent.be</a>)</li>
+<li>Theory: Lieven Clement (email: <a href="mailto:lieven.clement@ugent.be" class="email">lieven.clement@ugent.be</a>)</li>
+<li>Exercises: Nele De Meester (email: <a href="mailto:nele.demeester@ugent.be" class="email">nele.demeester@ugent.be</a>)</li>
 </ul>
 </div>
-<div id="non-periodical-evaluation" class="section level2">
-<h2>Non-periodical evaluation</h2>
+<div id="non-periodical-evaluation" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Non-periodical evaluation</h2>
 <ul>
 <li>Non-periodical evaluation: 5/20</li>
 <li>Project work and writing conclusion sections</li>
 <li>Evaluate R skills and interpretation of output</li>
-<li>Project work and submitting conclusion sections is mandatory. If you
-do not participate in projectwork you can get at most 7/20 for the
-course</li>
+<li>Project work and submitting conclusion sections is mandatory. If you do not participate in projectwork you can get at most 7/20 for the course</li>
 </ul>
 </div>
-<div id="periodical-evaluation" class="section level2">
-<h2>Periodical evaluation</h2>
+<div id="periodical-evaluation" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Periodical evaluation</h2>
 <ul>
 <li>Open book exam: 15/20
 <ul>
 <li>Assesses insight and logical reasoning</li>
-<li>Analyse of statistical output and results of scientific
-publications</li>
+<li>Analysis of statistical output and results of scientific publications</li>
 <li>Emphasis on interpretation rather than on calculation</li>
 <li>Exercises</li>
 </ul></li>
 </ul>
 </div>
-<div id="feedback" class="section level2">
-<h2>Feedback</h2>
+<div id="feedback" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Feedback</h2>
 <ul>
 <li>Upon subscription</li>
 <li>Date to be announced</li>
@@ -501,6 +509,12 @@ publications</li>
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3JnYW5pc2F0aW9uIGN1cnNlIFByYWN0aWNhbCBTdGF0aXN0aWNzIGZvciB0aGUgTGlmZSBTY2llbmNlcyIKYXV0aG9yOiAiTGlldmVuIENsZW1lbnQiCmRhdGU6ICJzdGF0T21pY3MsIEdoZW50IFVuaXZlcnNpdHkgKGh0dHBzOi8vc3RhdG9taWNzLmdpdGh1Yi5pbykiCm91dHB1dDoKICAgIGh0bWxfZG9jdW1lbnQ6CiAgICAgIHRoZW1lOiBjb3NtbwogICAgICB0b2M6IHRydWUKICAgICAgdG9jX2Zsb2F0OiB0cnVlCiAgICAgIGhpZ2hsaWdodDogdGFuZ28KICAgICAgbnVtYmVyX3NlY3Rpb25zOiBmYWxzZQotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IEZBTFNFKQpgYGAKCgojIENvdXJzZSBQcmFjdGljYWwgU3RhdGlzdGljcyBmb3IgdGhlIExpZmUgU2NpZW5jZXMKCi0gQ291cnNlIG1hdGVyaWFsIHZpYSBbaHR0cHM6Ly9zdGF0b21pY3MuZ2l0aHViLmlvL1BTTFMyNS9dKGh0dHBzOi8vc3RhdG9taWNzLmdpdGh1Yi5pby9QU0xTMjUvKQoKCiMjIExlY3R1cmVzCgoKLSBHb2FsOiBTdGF0aXN0aWNhbCBMaXRlcmFjeQotIDEgTGVjdHVyZSBibG9jayBvbiBXZWRuZXNkYXkgQCA4dTMwCi0gTGVjdHVyZSByb29tIDAuMi4gUzguIENhbXB1cyBTdGVycmUuIAoKCgoKIyMgT24gY2FtcHVzIFBDIHR1dG9yaWFscwoKICAtIFRocmVlIGxlY3R1cmUgYmxvY2tzIG9uIFR1ZXNkYXkgTW9ybmluZyAvIEFmdGVybm9vbgogIC0gR29hbDogZ2V0IGluc2lnaHQgaW4gc3RhdGlzdGljcyBieSBjb25kdWN0aW5nIGRhdGEgYW5hbHlzaXMgCiAgLSBJbnRyb2R1Y3Rpb24gdG8gc3RhdGlzdGljYWwgc29mdHdhcmUgUgogIC0gV2VlayAyLTM6IEludHJvZHVjdGlvbiB0byBSCiAgICAgIC0gW2h0dHBzOi8vZG9kb25hLmJlL25sL2NvdXJzZXMvNTQ1MC9dKGh0dHBzOi8vZG9kb25hLmJlL25sL2NvdXJzZXMvNTQ1MC8pCiAgLSBXZWVrIDQtMTI6IFBTTFMgZXhlcmNpc2VzIAogICAgICAtIFtodHRwczovL3N0YXRvbWljcy5naXRodWIuaW8vUFNMUzI1L10oaHR0cHM6Ly9zdGF0b21pY3MuZ2l0aHViLmlvL1BTTFMyNS8pCgojIyBDb250YWN0IAoKICAtIFRoZW9yeTogTGlldmVuIENsZW1lbnQgKGVtYWlsOiBsaWV2ZW4uY2xlbWVudEB1Z2VudC5iZSkKICAtIEV4ZXJjaXNlczogTmVsZSBEZSBNZWVzdGVyIChlbWFpbDogbmVsZS5kZW1lZXN0ZXJAdWdlbnQuYmUpCgojIyBOb24tcGVyaW9kaWNhbCBldmFsdWF0aW9uCgogIC0gTm9uLXBlcmlvZGljYWwgZXZhbHVhdGlvbjogNS8yMAogIC0gUHJvamVjdCB3b3JrIGFuZCB3cml0aW5nIGNvbmNsdXNpb24gc2VjdGlvbnMgCiAgLSBFdmFsdWF0ZSBSIHNraWxscyBhbmQgaW50ZXJwcmV0YXRpb24gb2Ygb3V0cHV0CiAgLSBQcm9qZWN0IHdvcmsgYW5kIHN1Ym1pdHRpbmcgY29uY2x1c2lvbiBzZWN0aW9ucyBpcyBtYW5kYXRvcnkuIElmIHlvdSBkbyBub3QgcGFydGljaXBhdGUgaW4gcHJvamVjdHdvcmsgeW91IGNhbiBnZXQgYXQgbW9zdCA3LzIwIGZvciB0aGUgY291cnNlCgojIyBQZXJpb2RpY2FsIGV2YWx1YXRpb24KCiAgLSBPcGVuIGJvb2sgZXhhbTogMTUvMjAKICAgICAgLSBBc3Nlc3NlcyBpbnNpZ2h0IGFuZCBsb2dpY2FsIHJlYXNvbmluZyAKICAgICAgLSBBbmFseXNpcyBvZiBzdGF0aXN0aWNhbCBvdXRwdXQgYW5kIHJlc3VsdHMgb2Ygc2NpZW50aWZpYyBwdWJsaWNhdGlvbnMKICAgICAgLSBFbXBoYXNpcyBvbiBpbnRlcnByZXRhdGlvbiByYXRoZXIgdGhhbiBvbiBjYWxjdWxhdGlvbiAKICAgICAgLSBFeGVyY2lzZXMKIAoKIyMgRmVlZGJhY2sKCiAgLSBVcG9uIHN1YnNjcmlwdGlvbgogIC0gRGF0ZSB0byBiZSBhbm5vdW5jZWQK</div>
+<div class="footer">
+    <hr>
+    This work is licensed under the <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0">
+    CC BY-NC-SA 4.0</a> licence.
+</div>
 
 
 </div>
@@ -536,6 +550,12 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("afspraken_ufora.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

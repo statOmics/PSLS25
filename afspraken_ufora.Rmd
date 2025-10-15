@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Course Practical Statistics for the Life Sciences
 
-- Course material via [https://statomics.github.io/PSLS24/](https://statomics.github.io/PSLS24/)
+- Course material via [https://statomics.github.io/PSLS25/](https://statomics.github.io/PSLS25/)
 
 
 ## Lectures
@@ -37,9 +37,9 @@ knitr::opts_chunk$set(echo = FALSE)
   - Goal: get insight in statistics by conducting data analysis 
   - Introduction to statistical software R
   - Week 2-3: Introduction to R
-      - [https://dodona.be/nl/courses/3858/](https://dodona.be/nl/courses/3858/)
+      - [https://dodona.be/nl/courses/5450/](https://dodona.be/nl/courses/5450/)
   - Week 4-12: PSLS exercises 
-      - [https://statomics.github.io/PSLS24/](https://statomics.github.io/PSLS24/)
+      - [https://statomics.github.io/PSLS25/](https://statomics.github.io/PSLS25/)
 
 ## Contact 
 
@@ -57,7 +57,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
   - Open book exam: 15/20
       - Assesses insight and logical reasoning 
-      - Analyse of statistical output and results of scientific publications
+      - Analysis of statistical output and results of scientific publications
       - Emphasis on interpretation rather than on calculation 
       - Exercises
  
