@@ -68,7 +68,7 @@ Files
 
   `https://raw.githubusercontent.com/statOmics/PSLSData/main/wbcon.csv`
 
-<!-- 
+<!-- -->
 - Solution: [Solution2](./04_2_pertussis_sol.html)
 <!---->
 
@@ -105,7 +105,7 @@ Files:
 
   `https://raw.githubusercontent.com/statOmics/PSLSData/main/diabetes.txt`
 
-<!--
+<!---->
 - Solution: [Solution3](./04_3_diabetes_sol.html)
 <!---->
 
@@ -128,7 +128,7 @@ In this exercise, you will learn how plots can help you to discover confounding 
 
   `https://raw.githubusercontent.com/statOmics/PSLSData/main/fev.txt`
 
-<!--
+<!---->
 - Solution: [Solution4](./04_4_FEV_sol.html)
 <!---->
 
