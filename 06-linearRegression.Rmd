@@ -76,6 +76,19 @@ brcaSubset %>%
   geom_smooth()
 ```
 
+
+```{r}
+brcaSubset %>% 
+  select("ESR1","S100A8") %>% 
+  cor
+```
+
+```{r}
+brcaSubset %>% 
+  select("ESR1","S100A8") %>% 
+  cor(method="spearman")
+```
+
 # Lineair Regression
 
 - Statistical method to assess association between two variables $(X_i, Y_i)$, measured on each subject $i = 1, ..., n$.
