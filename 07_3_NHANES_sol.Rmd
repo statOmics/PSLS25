@@ -170,9 +170,9 @@ print(paste("Not-rounded p-value:", fit_anova$`Pr(>F)`[1]))
 The p-value of the ANOVA analysis is extremely significant
 (p-value = `r format(fit_anova$"Pr(>F)"[1],digits=4)`),
 so we reject the null hypothesis that the mean
-egg length is equal between the different bird types.
-We can say that the mean egg length is significantly different
-between at least two bird types on the 5% significance level.
+systolic blood pressure is equal for the different health groups.
+We can say that the mean systolic blood pressure is significantly different
+between at least two health groups on the 5% significance level.
 
 Based on this analysis, we do not yet know between which particular
 bird types there is a significant difference. To study this, we will
